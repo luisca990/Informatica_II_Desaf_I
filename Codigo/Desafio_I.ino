@@ -11,10 +11,9 @@ struct Señal {
     int tamano;    // Tamaño de la señal
 };
 
-// Función para clasificar la señal
 string clasificarSeñal(Señal* señal) {
     int ascensos = 0, descensos = 0, saltos = 0;
-    
+
     for (int i = 1; i < señal->tamano; ++i) {
         float dif = señal->datos[i] - señal->datos[i - 1];
 
@@ -44,24 +43,40 @@ string clasificarSeñal(Señal* señal) {
 }
 
 // Función para generar una señal de prueba
-Señal* generarSeñal(int tamano, string tipo) {
+Señal* generarSeñal(int tamano, std::string tipo) {
     Señal* señal = new Señal;
     señal->tamano = tamano;
     señal->datos = new float[tamano];
 
+    // Asegurarse de que el tamaño es mayor que cero
+    if (tamano <= 0) {
+        std::cerr << "El tamaño de la señal debe ser mayor que 0." << std::endl;
+        return nullptr;
+    }
+
+    // Inicializar la semilla para números aleatorios (si es necesario)
     srand(time(0));
 
     if (tipo == "senoidal") {
         for (int i = 0; i < tamano; ++i) {
-            señal->datos[i] = sin(2 * M_PI * i / tamano);
+            señal->datos[i] = sin(2 * M_PI * i / float(tamano));  // Señal senoidal
         }
-    } else if (tipo == "triangular") {
+    }
+    // Generar señal triangular
+    else if (tipo == "triangular") {
         for (int i = 0; i < tamano; ++i) {
-            señal->datos[i] = 2.0 * fabs((i / float(tamano / 2)) - 1) - 1;
+            float t = float(i) / (tamano - 1);  // Normalización entre 0 y 1
+            if (t < 0.5) {
+                señal->datos[i] = 4 * t - 1;   // Subida en la primera mitad
+            } else {
+                señal->datos[i] = 3 - 4 * t;   // Bajada en la segunda mitad
+            }
         }
-    } else if (tipo == "cuadrada") {
+    }
+    // Generar señal cuadrada
+    else if (tipo == "cuadrada") {
         for (int i = 0; i < tamano; ++i) {
-            señal->datos[i] = (i % 2 == 0) ? 1.0 : -1.0;
+            señal->datos[i] = (i % (tamano / 2) < (tamano / 4)) ? 1.0 : -1.0;
         }
     }
 
@@ -70,11 +85,13 @@ Señal* generarSeñal(int tamano, string tipo) {
 
 int main() {
     // Generar una señal de prueba
-    Señal* miSeñal = generarSeñal(100, "senoidal");
-    
-    for (int i=0;i<100;i++){
-        printf("%f",*miSeñal[i].datos);
+    Señal* miSeñal = generarSeñal(100, "triangular");
+    printf("[");
+    for (int i = 0; i < 100; i++) {
+        printf("%f, ", miSeñal->datos[i]);  // Acceder a los datos de la señal correctamente
     }
+    printf("]\n");
+
 
     // Clasificar la señal
     string tipoSeñal = clasificarSeñal(miSeñal);
