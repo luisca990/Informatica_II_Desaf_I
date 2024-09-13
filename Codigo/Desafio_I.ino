@@ -103,3 +103,42 @@ int main() {
 
     return 0;
 }
+
+// lectura de pulsadores
+
+// Definición de pines
+const int botonPin2 = 2;   // Pin del pulsador 1
+const int botonPin3 = 3;   // Pin del pulsador 2
+
+void setup() {
+  // Configurar los pines de los botones como entradas
+  pinMode(botonPin2, INPUT);
+  pinMode(botonPin3, INPUT);
+
+
+
+  // Iniciar el puerto serie para la depuración
+  Serial.begin(9600);
+}
+
+void loop() {
+  // Leer el estado de los pulsadores
+  int estadoBoton2 = digitalRead(botonPin2);
+  int estadoBoton3 = digitalRead(botonPin3);
+
+  // Imprimir el estado de los botones en el monitor serie
+  Serial.print("Boton 2: ");
+  Serial.print(estadoBoton2);
+  Serial.print(" | Boton 3: ");
+  Serial.println(estadoBoton3);
+
+  // Si se presiona el botón 2 o el botón 3, encender el LED
+  if (estadoBoton2 == HIGH || estadoBoton3 == HIGH) {
+    Serial.print("Boton 2 o 3: ");
+  } else {
+    Serial.print("Sin Boton 2: o 3 ");
+  }
+
+  // Pequeño retardo para evitar rebotes
+  delay(50);
+}
