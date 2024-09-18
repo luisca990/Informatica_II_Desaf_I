@@ -8,8 +8,8 @@ const short pinPulsador2 = 3;
 short max_val;
 short min_val;
 short cruces_cero = 0;
-float triangular[2] = {0.89721627, 1};
-float senoidal[2] = {0.96631579, 1};
+// float triangular[2]={0.89721627, 1};
+// float senoidal[2]={0.96631579, 1};
 short posicionCresta = 0;
 
 Adafruit_LiquidCrystal lcd_1(0);
@@ -24,14 +24,14 @@ void calcularDiferenciasCrestas(short *datos)
     Serial.println(dato2);
     Serial.println("RESTA2:");
     Serial.println((dato1 - dato2));
-    if ((dato1 - dato2) < 0.05)
+    if ((dato1 - dato2) < 0.11)
     {
         lcd_1.setCursor(0, 0);
         lcd_1.print("                ");
         lcd_1.setCursor(0, 0);
         lcd_1.print("Senal senoidal");
     }
-    else if ((dato1 - dato2) < 0.21)
+    else if ((dato1 - dato2) < 0.26)
     {
         lcd_1.setCursor(0, 0);
         lcd_1.print("                ");
@@ -103,13 +103,13 @@ float calcularFrecuencia(short *senal, short tamano)
 void clasificarSenal(short *datos, short tamano)
 {
     int ascensos = 0, descensos = 0, saltos = 0;
-    float sumaDiferencias = 0.0;
+    // float sumaDiferencias=0.0;
 
     for (int i = 1; i < tamano; ++i)
     {
         float dif = datos[i] - datos[i - 1];
-        sumaDiferencias += abs(dif);
-        // Determinamos si hay un ascenso, descenso o salto
+        // sumaDiferencias += abs(dif);
+        //  Determinamos si hay un ascenso, descenso o salto
         if (dif > 0)
         {
             ascensos++;
@@ -134,8 +134,8 @@ void clasificarSenal(short *datos, short tamano)
     Serial.println(saltos);
     Serial.println("TAMANO: ");
     Serial.println(tamano);
-    Serial.println("PROMEDIO: ");
-    Serial.println(sumaDiferencias / (tamano - 1));
+    // Serial.println("PROMEDIO: ");
+    // Serial.println(sumaDiferencias/(tamano-1));
     Serial.println("MAX: ");
     Serial.println(max_val);
     Serial.println("MIN: ");
