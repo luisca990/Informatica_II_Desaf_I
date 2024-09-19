@@ -18,9 +18,7 @@ Este repositorio contiene el desarrollo de un proyecto en Arduino para la clasif
   [https://youtu.be/kE08MeOqPkI](https://youtu.be/kE08MeOqPkI)
 
 - **Simulación en Tinkercad**: La solución implementada también está disponible en Tinkercad, donde se puede ver el circuito en acción:
-  [https://www.tinkercad.com/things/eCic5PBUzgNdesafioi/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=zl
-r9sa2OqVm29qj677da-itjvy8JpVt-Ow3plD6obnY](https://www.tinkercad.com/things/eCic5PBUzgNdesafioi/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=zl
-r9sa2OqVm29qj677da-itjvy8JpVt-Ow3plD6obnY)
+  [https://www.tinkercad.com/things/eCic5PBUzgNdesafioi/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=zlr9sa2OqVm29qj677da-itjvy8JpVt-Ow3plD6obnY](https://www.tinkercad.com/things/eCic5PBUzgNdesafioi/editel?returnTo=%2Fdashboard%2Fdesigns%2Fcircuits&sharecode=zlr9sa2OqVm29qj677da-itjvy8JpVt-Ow3plD6obnY)
 
 ## Autores
 
